@@ -7,8 +7,9 @@ cpus=$( grep -c ^processor /proc/cpuinfo )
 
 ( cd openssl
 
-  tar -xzf openssl-*.tar.gz
-  cd openssl-*
+  mkdir -p archive
+  tar -xzf openssl-*.tar.gz -C ./archive/
+  cd ./archive/openssl-*
 
   ./config \
     -DSSL_ALLOW_ADH \
@@ -22,8 +23,9 @@ cpus=$( grep -c ^processor /proc/cpuinfo )
 
 ( cd lzo
 
-  tar -xzf lzo-*.tar.gz
-  cd lzo-*
+  mkdir -p archive
+  tar -xzf lzo-*.tar.gz -C ./archive/
+  cd ./archive/lzo-*
 
   ./configure \
     --prefix=${BOSH_INSTALL_TARGET}/external/lzo \
@@ -34,8 +36,9 @@ cpus=$( grep -c ^processor /proc/cpuinfo )
 
 ( cd openvpn
 
-  tar -xzf openvpn-*.tar.gz
-  cd openvpn-*
+  mkdir -p archive
+  tar -xzf openvpn-*.tar.gz -C ./archive/
+  cd ./archive/openvpn-*
 
   export CFLAGS="-I${BOSH_INSTALL_TARGET}/external/openssl/include -Wl,-rpath=${BOSH_INSTALL_TARGET}/external/openssl/lib -L${BOSH_INSTALL_TARGET}/external/openssl/lib"
   export LZO_CFLAGS="-I${BOSH_INSTALL_TARGET}/external/lzo/include"
